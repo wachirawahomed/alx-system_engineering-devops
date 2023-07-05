@@ -6,3 +6,4 @@ SHELL BASICS SCRIPTS
 4-listmorefiles display's all current directory contents, including hidden files, in the long format.
 5-listfilesdigitonly display's all current directory contents in long format,with user and group IDs displayed numerically and hidden files (starting with .).
 6-firstdirectory is a script that creates a directory named my_first_directory in the /tmp/ directory.
+7-movethatfile moves the file betty from /tmp/ to /tmp/my_first_directory.
