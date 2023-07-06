@@ -9,4 +9,5 @@
 7-everybody adds execution permission to the owner, the group owner and the other users, to the file hello.
 8-James_Bond sets the permission to the file hello as; Owner: no permission at all, Group: no permission at all and Other users: all the permissions.
 9-John_Doe cript that sets the mode of the file hello to -rwxr-x-wx
+10-mirror_permissions sets the mode of the file hello the same as olleh’s mode.
 
