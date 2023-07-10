@@ -19,3 +19,5 @@ Requirements:\n
 	-One file per line\n
 	-Sorted from the newest to the oldest\n
 13-unique takes a list of words as input and prints only words that appear exactly once.\n
+14-findthatword display lines containing the pattern “root” from the file /etc/passwd.\n
+
