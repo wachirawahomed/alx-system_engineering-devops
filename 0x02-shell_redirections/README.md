@@ -14,3 +14,7 @@
 -11-directories counts the number of directories and sub-directories in the current directory.
 	-The current and parent directories should not be taken into account.
 	-Hidden directories should be counted.
+-12-newest_files displays the 10 newest files in the current directory.
+Requirements:\n
+	-One file per line\n
+	-Sorted from the newest to the oldest\n
