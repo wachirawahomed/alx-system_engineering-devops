@@ -27,5 +27,6 @@ Requirements:\n
 -19-AZ replace all characters A and c from input to Z and e respectively.\n
 -20-hiago removes all letters c and C from input.
 -21-reverse that reverse its input.\n
-
+-22-users_and_homes displays all users and their home directories, sorted by users.\n
+ 
 
