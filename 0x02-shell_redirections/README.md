@@ -28,5 +28,6 @@ Requirements:\n
 -20-hiago removes all letters c and C from input.
 -21-reverse that reverse its input.\n
 -22-users_and_homes displays all users and their home directories, sorted by users.\n
+-100-empty_casks finds all empty files and directories in the current directory and all sub-directories.\n
  
 
