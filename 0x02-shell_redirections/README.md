@@ -24,5 +24,6 @@ Requirements:\n
 -16-whatsnext display lines containing the pattern “root” and 3 lines after them in the file /etc/passwd.\n
 -17-hidethisword display all the lines in the file /etc/passwd that do not contain the pattern “bin”.\n
 -18-letteronly display all lines of the file /etc/ssh/sshd_config starting with a letter.\n
--19-AZ replace all characters A and c from input to Z and e respectively.
+-19-AZ replace all characters A and c from input to Z and e respectively.\n
+20-hiago removes all letters c and C from input.
 
