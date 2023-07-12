@@ -13,4 +13,5 @@
 9-divide_and_rule prints the result of POWER divided by DIVIDE, followed by a new line.
 10-love_exponent_breath displays the result of BREATH to the power LOVE.
 11-binary_to_decimal a number from base 2 to base 10.
+12-combinations prints all possible combinations of two letters, except oo.
 
