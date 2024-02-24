@@ -1,14 +1,4 @@
 #!/usr/bin/env bash
 # This script stops the 4-to_infinity_and_beyond process without using kill or killall.
 
-# Find the PID of the process named "4-to_infinity_and_beyond"
-pid=$(pgrep -f "4-to_infinity_and_beyond")
-
-# Check if the process is running
-if [ -n "$pid" ]; then
-    # If the process is running, send SIGINT (Ctrl+C) to it
-    kill -SIGINT "$pid"
-    echo "Process terminated"
-else
-    echo "Process not found"
-fi
+pkill -f 4-to_infinity_and_beyond
