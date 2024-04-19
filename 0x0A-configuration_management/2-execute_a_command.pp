@@ -6,3 +6,4 @@ exec { 'killmenow':
   path        => '/bin:/usr/bin',
   refreshonly => true,
 }
+
