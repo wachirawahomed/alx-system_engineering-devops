@@ -1,4 +1,4 @@
-# Puppet manifest to install Flask package
+# Using Puppet manifest to install Flask package
 
 package { 'Flask':
   ensure   => '2.1.0',
