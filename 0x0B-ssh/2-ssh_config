@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
-
+# SSH client configuration to use the private key ~/.ssh/school
 # Create or edit SSH client configuration file
 
-Host *
-    IdentityFile ~/.ssh/school
-    PasswordAuthentication no
-
+Host 18.209.224.134
+IdentityFile ~/.ssh/school
+PasswordAuthentication no
