@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Bash script to configure custom 404 page in Nginx server on Ubuntu
+re_direction="\\\tlocation /redirect_me {\n\t\t return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}\n"
+
+
+# Install Nginx if not already installed
+sudo apt-get update
+sudo apt-get -y install nginx
+
+# Create a simple HTML file containing "Hello World!"
+echo "<html><body>Hello World!</body></html>" > /usr/share/nginx/html/index.html
+
+# Configure Nginx redirection
+
+
+# Create custom 404 page with desired content
+echo "<html><body>Ceci n'est pas une page</body></html>" > /var/www/html/404.html
+
+# Configure Nginx to use custom 404 page
+sed -i '/listen 80 default_server;/a \\n\terror_page 404 /404.html;\n\tlocation = /404.html {\n\t\troot /var/www/html;\n\t\tinternal;\n\t}' /etc/nginx/sites-available/default
+
+service nginx restart

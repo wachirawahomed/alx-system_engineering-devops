@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Bash script to configure redirection in Nginx server on Ubuntu
+# redirection must be a “301 Moved Permanently”
+re_direction="\\\tlocation /redirect_me {\n\t\t return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}\n"
+
+sudo apt-get update
+sudo apt-get -y install nginx
+
+echo "<html><body>Hello World!</body></html>" > /usr/share/nginx/html/index.html
+sudo sed -i "30i $re_direction" /etc/nginx/sites-available/default
+sudo service nginx start

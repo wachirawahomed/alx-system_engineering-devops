@@ -27,9 +27,6 @@ This Bash script configures a domain name for the server.
 It provides instructions for registering a free .tech domain from .TECH Domains and setting up DNS records to point the domain to the server's IP address.  
 Additionally, it instructs how to update the Project website URL in the user's profile.  
 
-_Usage:_  
-./2-setup_a_domain_name  
-
 ### 3-redirection  
 
 This Bash script configures Nginx to redirect requests to "/redirect_me" to another specified URL with a 301 Moved Permanently status code.  
