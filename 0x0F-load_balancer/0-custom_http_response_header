@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# A Bash script to configure Nginx with a custom HTTP response header
+
+# Install Nginx
+sudo apt-get update
+sudo apt-get install -y nginx
+
+# Get the hostname of the server
+server_hostname=$(hostname)
+
+# Configure Nginx to add custom HTTP response header
+cat <<EOF | sudo tee /etc/nginx/sites-available/custom_header
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    server_name _;
+
+    location / {
+        add_header X-Served-By $server_hostname;
+        root /var/www/html;
+        index index.html index.htm;
+    }
+}
+EOF
+
+# Enable the new configuration
+sudo ln -s /etc/nginx/sites-available/custom_header /etc/nginx/sites-enabled/
+
+# Remove default Nginx configuration if necessary
+sudo rm -f /etc/nginx/sites-enabled/default
+
+# Restart Nginx to apply changes
+sudo systemctl restart nginx
+
