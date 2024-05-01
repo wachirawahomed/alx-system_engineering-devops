@@ -1,6 +1,6 @@
 # Puppet manifest to install and configure Nginx web server
 
-# Install Nginx package
+# Ensure Nginx package is installed
 package { 'nginx':
   ensure => present,
 }
@@ -15,20 +15,28 @@ service { 'nginx':
 # Configure Nginx to listen on port 80
 file { '/etc/nginx/sites-available/default':
   ensure  => file,
-  content => template('nginx/default.erb'),
+  content => template('nginx/default.erb'), # Assuming you have a template for Nginx configuration
   require => Package['nginx'],
   notify  => Service['nginx'],
 }
 
 # Ensure custom 404 page is configured
-file { '/var/www/html/404.html':
+file { '/usr/share/nginx/html/404.html':
   ensure  => file,
-  content => "<html><body>Ceci n'est pas une page</body></html>",
+  content => "Ceci n'est pas une page",
 }
 
-# Configure redirection for /redirect_me
+# Ensure Nginx returns 200 when querying /
+file { '/usr/share/nginx/html/index.html':
+  ensure  => file,
+  content => "Hello World!\n",
+  require => Package['nginx'],
+  notify  => Service['nginx'],
+}
+
+# Ensure Nginx returns a 301 redirect for /redirect_me
 nginx::resource::vhost { 'redirect_me':
-  www_root     => '/var/www/html',
+  www_root     => '/usr/share/nginx/html',
   ensure       => present,
   listen_port  => 80,
   server_name  => 'localhost',
@@ -37,4 +45,3 @@ nginx::resource::vhost { 'redirect_me':
   },
   require => Package['nginx'],
 }
-
