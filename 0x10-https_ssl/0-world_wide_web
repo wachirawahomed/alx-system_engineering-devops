@@ -9,7 +9,7 @@ display_info() {
     output=$(dig "${subdomain}.${domain}" | grep -A1 'ANSWER SECTION:')
     
     # Extract relevant information using awk
-    sub_domain=$(echo "${output}" | awk '/ANSWER SECTION:/{getline; print $1}')
+    sub_domain=$(echo "${subdomain}" | awk -F'.' '{print $1}')
     record_type=$(echo "${output}" | awk '/ANSWER SECTION:/{getline; print $4}')
     destination=$(echo "${output}" | awk '/ANSWER SECTION:/{getline; print $5}')
     
