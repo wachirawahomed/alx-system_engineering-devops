@@ -3,4 +3,3 @@
 
 sed -i '/listen\s*80/d' /etc/nginx/sites-available/default
 service nginx restart
-sudo pkill -o nginx
