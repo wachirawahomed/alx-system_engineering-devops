@@ -1,33 +1,20 @@
 # Puppet manifest to add a custom HTTP header to Nginx configuration
 
-# Define the custom HTTP header value as the hostname of the server
-$hostname = $facts['hostname']
-
-# Install Nginx package
-package { 'nginx':
+exec { 'update':
+  command  => 'sudo apt-get update',
+  provider => shell,
+}
+-> package {'nginx':
   ensure => present,
 }
-
-# Ensure Nginx service is running and enabled
-service { 'nginx':
-  ensure => running,
-  enable => true,
-  require => Package['nginx'],
+-> file_line { 'header line':
+  ensure => present,
+  path   => '/etc/nginx/sites-available/default',
+  line   => "	location / {
+  add_header X-Served-By ${hostname};",
+  match  => '^\tlocation / {',
 }
-
-# Define custom HTTP header in Nginx configuration
-file { '/etc/nginx/sites-available/default':
-  ensure  => file,
-  content => template('nginx/default.erb'), # Assuming you have a template for Nginx configuration
-  require => Package['nginx'],
-  notify  => Service['nginx'],
+-> exec { 'restart service':
+  command  => 'sudo service nginx restart',
+  provider => shell,
 }
-
-# Create a template for Nginx configuration
-file { '/etc/nginx/sites-available/default':
-  ensure  => file,
-  content => template('nginx/default.erb'),
-  require => Package['nginx'],
-  notify  => Service['nginx'],
-}
-
