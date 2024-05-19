@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Configure Nginx to run as nginx user and listen on port 8080
+
+# Check if the script is run as root
+if [ "$(id -u)" != "0" ]; then
+	echo "This script must be run as root" 1>&2
+	exit 1
+fi
+
+# Install nginx if not already installed
+if ! command -v nginx &> /dev/null; then
+	apt-get update
+	apt-get install -y nginx
+fi
+
+# Stop nginx if it's already running
+systemctl stop nginx
+
+# Edit nginx configuration to run as nginx user and listen on port 8080
+sed -i 's/^user .*/user nginx;/' /etc/nginx/nginx.conf
+sed -i 's/listen\(.*\)80;/listen\1 8080;/' /etc/nginx/sites-available/default
+
+# Start nginx
+systemctl start nginx
