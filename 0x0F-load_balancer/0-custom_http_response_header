@@ -1,35 +1,23 @@
 #!/usr/bin/env bash
-# A Bash script to configure Nginx with a custom HTTP response header
+# Configure a new server
+
+# Update package lists
+sudo apt-get update
 
 # Install Nginx
-sudo apt-get update
-sudo apt-get install -y nginx
+sudo apt-get -y install nginx
 
-# Get the hostname of the server
-server_hostname=$(hostname)
+# Start Nginx service
+sudo service nginx start
 
-# Configure Nginx to add custom HTTP response header
-cat <<EOF | sudo tee /etc/nginx/sites-available/custom_header
-server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
+# Get the hostname
+HOSTNAME=$(hostname)
 
-    server_name _;
+# Add custom header to Nginx configuration
+sudo sed -i "/http {/a \\\tadd_header X-Served-By $HOSTNAME;" /etc/nginx/nginx.conf
 
-    location / {
-        add_header X-Served-By $server_hostname;
-        root /var/www/html;
-        index index.html index.htm;
-    }
-}
-EOF
-
-# Enable the new configuration
-sudo ln -s /etc/nginx/sites-available/custom_header /etc/nginx/sites-enabled/
-
-# Remove default Nginx configuration if necessary
-sudo rm -f /etc/nginx/sites-enabled/default
+# Create a simple HTML file to serve
+echo "Holberton School" | sudo tee /usr/share/nginx/html/index.html
 
 # Restart Nginx to apply changes
-sudo systemctl restart nginx
-
+sudo service nginx restart
