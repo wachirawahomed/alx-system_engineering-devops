@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+# Check if the script is run as root
+if [[ $(id -u) -ne 0 ]]; then
+	echo "Please run this script as root"
+	exit 1
+fi
+
+# Define the path to the manage_my_process script
+SCRIPT_PATH="./manage_my_process"
+
+# Check if the manage_my_process script exists
+if [[ ! -x "$SCRIPT_PATH" ]]; then
+	echo "Error: $SCRIPT_PATH not found or not executable"
+	exit 1
+fi
+
+# Check if an argument is provided
+if [[ $# -ne 1 ]]; then
+	echo "Usage: $0 {start|stop|restart}"
+	exit 1
+fi
+
+# Call the manage_my_process script with the provided argument
+"$SCRIPT_PATH" "$1"

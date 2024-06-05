@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+# Function to start manage_my_process
+start_process() {
+	/bin/bash manage_my_process &
+	echo $! > /var/run/my_process.pid
+	echo "manage_my_process started"
+}
+
+# Function to stop manage_my_process
+stop_process() {
+	pid=$(cat /var/run/my_process.pid)
+	kill $pid
+	rm -f /var/run/my_process.pid
+	echo "manage_my_process stopped"
+}
+
+# Function to restart manage_my_process
+restart_process() {
+	stop_process
+	start_process
+	echo "manage_my_process restarted"
+}
+
+# Check the argument and call the appropriate function
+case "$1" in
+	start)
+		start_process
+		;;
+	stop)
+		stop_process
+		;;
+	restart)
+		restart_process
+		;;
+	*)
+		echo "Usage: manage_my_process {start|stop|restart}"
+		exit 1
+		;;
+esac
