@@ -1,37 +1,38 @@
 #!/usr/bin/python3
-"""
-Python script to export data in the JSON format.
-"""
-
-import sys
-import requests
+"""Export data from JSONPlaceholder API to JSON"""
 import json
+import requests
+import sys
 
+API = "https://jsonplaceholder.typicode.com"
 
-def get_employee_todo_progress(employee_id):
-    url = f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos"
-    response = requests.get(url)
-    todos = response.json()
-    employee_name = todos[0]['name']
-
-    tasks = []
-    for todo in todos:
-        task_info = {
-            "task": todo['title'],
-            "completed": todo['completed'],
-            "username": employee_name
-        }
-        tasks.append(task_info)
-
-    # Create JSON file
-    with open(f"{employee_id}.json", 'w') as jsonfile:
-        json.dump({str(employee_id): tasks}, jsonfile, indent=4)
-
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     if len(sys.argv) != 2:
-        print("Usage: python3 2-export_to_JSON.py <employee_id>")
+        print("Usage: {} <user_id>".format(sys.argv[0]))
         sys.exit(1)
 
-    employee_id = int(sys.argv[1])
-    get_employee_todo_progress(employee_id)
+    USER_ID = sys.argv[1]
+    url_to_user = f"{API}/users/{USER_ID}"
+    url_to_task = f"{url_to_user}/todos"
+
+    user_response = requests.get(url_to_user)
+    todos_response = requests.get(url_to_task)
+
+    user_data = user_response.json()
+    todos_data = todos_response.json()
+
+    USERNAME = user_data.get('username')
+    dict_data = {USER_ID: []}
+
+    for task in todos_data:
+        TASK_COMPLETED_STATUS = task.get('completed')
+        TASK_TITLE = task.get('title')
+        dict_data[USER_ID].append({
+            "task": TASK_TITLE,
+            "completed": TASK_COMPLETED_STATUS,
+            "username": USERNAME
+        })
+
+    json_filename = f"{USER_ID}.json"
+    with open(json_filename, 'w') as f:
+        json.dump(dict_data, f)
