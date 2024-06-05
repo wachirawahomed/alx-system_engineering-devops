@@ -5,6 +5,8 @@ the first 10 hot posts for a given subreddit.
 """
 
 import requests
+from sys import argv
+
 
 def top_ten(subreddit):
     """
@@ -16,7 +18,7 @@ def top_ten(subreddit):
     Returns:
         None
     """
-    url = f"https://www.reddit.com/r/{subreddit}/hot.json"
+    url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
     headers = {'User-Agent': 'Mozilla/5.0'}
     params = {'limit': 10}
     response = requests.get(url, headers=headers, params=params)
@@ -32,7 +34,6 @@ def top_ten(subreddit):
     else:
         print("None")
 
-if __name__ == "__main__":
-    subreddit = input("Enter the subreddit name: ")
-    top_ten(subreddit)
 
+if __name__ == "__main__":
+    top_ten(argv[1])

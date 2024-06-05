@@ -6,6 +6,7 @@ return a list containing the titles of all hot articles for a given subreddit.
 
 import requests
 
+
 def recurse(subreddit, hot_list=[], after=None):
     """
     Recursively retrieves all hot articles for a given subreddit from
@@ -22,7 +23,7 @@ def recurse(subreddit, hot_list=[], after=None):
         list or None: A list containing the titles of all hot articles for
         the given subreddit, or None if no results are found.
     """
-    url = f"https://www.reddit.com/r/{subreddit}/hot.json"
+    url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
     headers = {'User-Agent': 'Mozilla/5.0'}
     params = {'limit': 100, 'after': after} if after else {'limit': 100}
     response = requests.get(url, headers=headers, params=params)
@@ -41,11 +42,3 @@ def recurse(subreddit, hot_list=[], after=None):
             return None
     else:
         return None
-
-if __name__ == "__main__":
-    subreddit = input("Enter the subreddit name: ")
-    result = recurse(subreddit)
-    if result is not None:
-        print(len(result))
-    else:
-        print("None")
