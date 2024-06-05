@@ -18,13 +18,13 @@ def number_of_subscribers(subreddit):
         int: The number of subscribers for the subreddit,
         or 0 if the subreddit is invalid.
     """
-    url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
+    url = f'https://www.reddit.com/r/{subreddit}/about.json'
     headers = {'User-Agent': 'Mozilla/5.0'}
     response = requests.get(url, headers=headers)
 
     if response.status_code == 200:
         data = response.json()
-        subs = data['data']['subscribers']
-        return subs
-    else:
-        return 0
+        if 'data' in data and 'subscribers' in data['data']:
+            subs = data['data']['subscribers']
+            return subs
+    return 0
