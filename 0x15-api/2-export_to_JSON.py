@@ -1,7 +1,12 @@
 #!/usr/bin/python3
+"""
+Python script to export data in the JSON format.
+"""
+
 import sys
 import requests
 import json
+
 
 def get_employee_todo_progress(employee_id):
     url = f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos"
@@ -21,6 +26,7 @@ def get_employee_todo_progress(employee_id):
     # Create JSON file
     with open(f"{employee_id}.json", 'w') as jsonfile:
         json.dump({str(employee_id): tasks}, jsonfile, indent=4)
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:

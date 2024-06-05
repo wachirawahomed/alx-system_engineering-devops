@@ -22,7 +22,11 @@ if __name__ == "__main__":
         tasks_by_user = {}
         for task in tasks_data:
             user_id = task["userId"]
-            task_entry = {"username": "", "task": task["title"], "completed": task["completed"]}
+            task_entry = {
+                    "username": "",
+                    "task": task["title"],
+                    "completed": task["completed"]
+                    }
             # Find username corresponding to user ID
             for user in users_data:
                 if user["id"] == user_id:

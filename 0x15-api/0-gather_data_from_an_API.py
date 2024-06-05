@@ -1,6 +1,11 @@
 #!/usr/bin/python3
+'''
+gather employee data from API
+'''
+
 import sys
 import requests
+
 
 def get_employee_todo_progress(employee_id):
     url = f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos"
@@ -12,10 +17,12 @@ def get_employee_todo_progress(employee_id):
     done_tasks = sum(1 for todo in todos if todo['completed'])
 
     # Display progress
-    print(f"Employee {todos[0]['name']} is done with tasks({done_tasks}/{total_tasks}):")
+    print(f"Employee {todos[0]['name']} is done with"
+          " tasks({done_tasks}/{total_tasks}):")
     for todo in todos:
         if todo['completed']:
             print(f"\t{todo['title']}")
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
