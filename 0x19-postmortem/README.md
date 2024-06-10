@@ -30,7 +30,7 @@ This task involves writing a detailed postmortem report for a hypothetical outag
 - What improvements/fixes can be made.
 - List of tasks to address the issue (e.g., patch Nginx server, add monitoring on server memory).
 - Example Postmortem Report:
-Google Doc Link: https://docs.google.com/document/d/1Xa2emmpfIBxMB_RNrlemQI-NHMw4nSeO25c4MMe09oU/edit?usp=sharing
+[Google Doc Link](https://docs.google.com/document/d/1Xa2emmpfIBxMB_RNrlemQI-NHMw4nSeO25c4MMe09oU/edit?usp=sharing)
 
 ## Task 1: Make People Want to Read Your Postmortem
 This task involves making your postmortem report engaging and attractive by adding humor, diagrams, or anything that will catch the audience's attention. The goal is to ensure your report stands out and is read by your intended audience.
@@ -42,7 +42,7 @@ This task involves making your postmortem report engaging and attractive by addi
 A humorous and engaging postmortem report about an Nginx misconfiguration that caused an outage. The report includes a detailed timeline, root cause analysis, resolution steps, and corrective measures. A humorous takeaway and a diagram are included to make the report more appealing.
 
 ### Read the full report on Medium:
-Postmortem Report: The Great Nginx Misadventure
+[Postmortem Report: The Great Nginx Misadventure 🐙](https://medium.com/@wachirawahomed/postmortem-report-the-great-nginx-misadventure-5aec75bc69f3)
 
 ### Instructions:
 Create a detailed and accurate postmortem report based on the requirements provided.
