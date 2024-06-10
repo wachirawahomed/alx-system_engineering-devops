@@ -44,7 +44,7 @@ A humorous and engaging postmortem report about an Nginx misconfiguration that c
 ### Read the full report on Medium:
 [Postmortem Report: The Great Nginx Misadventure 🐙](https://medium.com/@wachirawahomed/postmortem-report-the-great-nginx-misadventure-5aec75bc69f3)
 
-### Instructions:
+### Project Instructions:
 Create a detailed and accurate postmortem report based on the requirements provided.  
 Make the report engaging and easy to read by adding humor, diagrams, or other engaging elements.  
 Ensure the report is brief, straight to the point, and within 400 to 600 words.  
