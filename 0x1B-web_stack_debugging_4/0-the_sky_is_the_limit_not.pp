@@ -7,13 +7,13 @@ exec { 'fix--for-nginx':
 
 file { '/etc/nginx/nginx.conf':
   ensure  => file,
-  content => template('nginx/nginx.conf.erb'),
+  content => template('/etc/nginx/nginx.conf.erb'),
   notify  => Exec['fix--for-nginx'],
 }
 
 file { '/etc/nginx/sites-available/default':
   ensure  => file,
-  content => template('nginx/default.erb'),
+  content => template('/etc/nginx/default.erb'),
   notify  => Exec['fix--for-nginx'],
 }
 
