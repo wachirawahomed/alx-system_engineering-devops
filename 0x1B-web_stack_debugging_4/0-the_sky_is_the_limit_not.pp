@@ -1,24 +1,4 @@
 # This Puppet manifest optimizes Nginx configuration for handling high concurrency.
 
-exec { 'fix--for-nginx':
-  command     => '/usr/sbin/nginx -s reload',
-  refreshonly => true,
-}
-
-file { '/etc/nginx/nginx.conf':
-  ensure  => file,
-  content => template('/etc/nginx/nginx.conf.erb'),
-  notify  => Exec['fix--for-nginx'],
-}
-
-file { '/etc/nginx/sites-available/default':
-  ensure  => file,
-  content => template('/etc/nginx/default.erb'),
-  notify  => Exec['fix--for-nginx'],
-}
-
-class { 'nginx':
-  package_ensure => 'present',
-  service_ensure => 'running',
-  service_enable => true,
-}
+exec { '/usr/bin/env sed -i s/15/1000/ /etc/default/nginx': }
+-> exec { '/usr/bin/env service nginx restart': }
