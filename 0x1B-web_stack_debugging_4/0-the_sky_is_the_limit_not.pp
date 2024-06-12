@@ -1,7 +1,7 @@
 # This Puppet manifest optimizes Nginx configuration for handling high concurrency.
 
 exec { 'fix--for-nginx':
-  command => '/usr/sbin/nginx -s reload',
+  command     => '/usr/sbin/nginx -s reload',
   refreshonly => true,
 }
 
