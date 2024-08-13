@@ -24,7 +24,7 @@ def count_words(subreddit, word_list, after=None, word_count={}):
         if response.status_code == 200:
             data = response.json()
             posts = data['data']['children']
-            
+
             # Convert word_list to lowercase for case-insensitive matching
             word_list = [word.lower() for word in word_list]
 
@@ -44,7 +44,7 @@ def count_words(subreddit, word_list, after=None, word_count={}):
                 return count_words(subreddit, word_list, after, word_count)
             else:
                 # Sort and print the results
-                sorted_word_count = sorted(word_count.items(), 
+                sorted_word_count = sorted(word_count.items(),
                                            key=lambda kv: (-kv[1], kv[0]))
                 for word, count in sorted_word_count:
                     if count > 0:
