@@ -19,7 +19,7 @@ def top_ten(subreddit):
         if response.status_code == 302:
             print(None)
             return
-        
+
         # Ensure the request was successful
         response.raise_for_status()
 
