@@ -22,10 +22,9 @@ listen 465353-lb-01
     balance roundrobin
     option httpclose
     option forwardfor
-    server 465353-web-01 18.209.224.134:80 check
-    server 465353-web-02 35.168.7.197:80 check
+    server 465353-web-01 54.82.26.115:80 check
+    server 465353-web-02 34.207.64.65:80 check
 EOF
 
 # Start HAProxy service
 sudo service haproxy start
-
