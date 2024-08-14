@@ -16,10 +16,8 @@ $redirect_config" /etc/nginx/sites-available/default
 # Step 3: Configure a custom 404 error page with the message "Ceci n'est pas une page"
 echo "Ceci n'est pas une page" > /var/www/html/404.html
 
-custom_404="error_page 404 /404.html;\n
-location = /404.html {\n
-    internal;\n
-}"
+# Configure Nginx to use custom 404 page
+sed -i '/listen 80 default_server;/a \\n\terror_page 404 /404.html;\n\tlocation = /404.html {\n\t\troot /var/www/html;\n\t\tinternal;\n\t}' /etc/nginx/sites-available/default
 
 sed -i "/server_name _;/a\\
 $custom_404" /etc/nginx/sites-available/default
