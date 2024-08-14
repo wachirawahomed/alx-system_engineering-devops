@@ -2,23 +2,30 @@
 # Bash script to configure Nginx server with a custom 404 error page and a 301 redirection
 
 # Update package lists and install nginx
-apt-get -y update
-apt-get -y install nginx
+apt-get update && apt-get -y install nginx
 
-# Step 1: Return a page with "Holberton School"
+# Create a simple HTML file containing "Hello World!"
 echo "Hello World!" > /var/www/html/index.html
 
-# Step 2: Configure a 301 redirection from /redirect_me to a YouTube video
-redirect_config="location /redirect_me {\n\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n}\n"
+# Remove any existing configuration for /redirect_me
+sed -i '/location \/redirect_me {/,/}/d' /etc/nginx/sites-available/default
+
+# Define the redirection configuration for /redirect_me
+redirect_config="location /redirect_me {\n\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n}"
+
+# Insert the redirection configuration into the Nginx default site configuration file
 sed -i "/server_name _;/a\\
 $redirect_config" /etc/nginx/sites-available/default
 
-# Step 3: Configure a custom 404 error page with the message "Ceci n'est pas une page"
+# Configure a custom 404 error page with the message "Ceci n'est pas une page"
 echo "Ceci n'est pas une page" > /var/www/html/404.html
 
-# Configure Nginx to use custom 404 page
-sed -i '/listen 80 default_server;/a \\n\terror_page 404 /404.html;\n\tlocation = /404.html {\n\t\troot /var/www/html;\n\t\tinternal;\n\t}' /etc/nginx/sites-available/default
+custom_404="error_page 404 /404.html;\n
+location = /404.html {\n
+    internal;\n
+}"
 
+# Insert the custom 404 error page configuration
 sed -i "/server_name _;/a\\
 $custom_404" /etc/nginx/sites-available/default
 
