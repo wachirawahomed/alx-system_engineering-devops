@@ -1,12 +1,14 @@
 #!/usr/bin/python3
 """Module for task 1"""
+import requests
 
 
 def top_ten(subreddit):
-    """Queries the Reddit API and returns the top 10 hot posts
-    of the subreddit"""
-    import requests
-
+    """
+        return top ten titles for a given subreddit.
+        return None if invalid subreddit given.
+    """
+    # get user agent
     sub_info = requests.get("https://www.reddit.com/r/{}/hot.json?limit=10"
                             .format(subreddit),
                             headers={"User-Agent": "My-User-Agent"},
